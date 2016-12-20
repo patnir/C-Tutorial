@@ -3,6 +3,8 @@
 using namespace std;
 
 int main() {
-	cout << "Hello World\a\n";
+	int x;
+	x = 4 + 2;
+	cout << x / 3 << " " << x * 2;
 	return 0;
 }
