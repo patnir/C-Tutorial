@@ -6,27 +6,16 @@ using namespace std;
 
 #include "points.h"
 
-int Polygon::numberOfPolygons = 0;
+Point shape[4];
 
-Polygon::Polygon(const PointArray &pts) : vertices(pts) {
-	++numberOfPolygons;
+Point *updateShape(const Point &p1, const Point &p2, const Point &p3, const Point &p4 = Point(0, 0)) {
+	shape[0] = p1;
+	shape[1] = p2;
+	shape[2] = p3;
+	shape[3] = p4;
+
+	return shape;
 }
-
-Polygon::Polygon(const Point pts[], const int length) : vertices(pts, length) {
-	++numberOfPolygons;
-}
-
-Polygon::~Polygon() {
-	--numberOfPolygons;
-}
-
-class Rectangle : Polygon {
-public:
-	Rectangle(const Point &a, const Point &b);
-	Rectangle(const int a, const int b, const int c, const int d);
-	virtual double area() const;
-};
-
 
 int main() {
 	return 0;

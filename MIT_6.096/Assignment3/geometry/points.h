@@ -72,3 +72,17 @@ Point *PointArray::get (const int pos) {
 const Point *PointArray::get (const int pos) const {
 	return pos >= 0 && pos < this->size? points + pos : NULL;
 }
+
+int Polygon::numberOfPolygons = 0;
+
+Polygon::Polygon(const PointArray &pts) : vertices(pts) {
+	++numberOfPolygons;
+}
+
+Polygon::Polygon(const Point pts[], const int length) : vertices(pts, length) {
+	++numberOfPolygons;
+}
+
+Polygon::~Polygon() {
+	--numberOfPolygons;
+}
