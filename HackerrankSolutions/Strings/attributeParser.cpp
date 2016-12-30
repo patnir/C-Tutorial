@@ -47,24 +47,30 @@ string getAttribute(string line) {
 }
 
 
-vector<string> buildCombinations(vector<string> lines, vector<string> attributes) {
+vector<string> buildCombinations(vector<string> lines, vector<string> values) {
     vector<string> combos;
     string curr;
     int total = lines.size();
     for (int i = 0; i < total; i++) {
         if (lines[i][1] != '/') {
-            if (curr.size() == 0) {
-                
-            }
-            else {
-                
-            }
             string tag = getTag(lines[i]);
             string att = getAttribute(lines[i]);
             string val = getValue(lines[i]);
-            attributes.push_back(val);
-            combos.push_back(curr);
-            cout << tag << " " <<  att << " " << val << "\n";
+
+            if (curr.size() == 0) {
+                curr.append(tag);
+            }
+            else {
+                curr.append(".");
+                curr.append(tag);
+            }
+            string combo = curr;
+            combo.append("~");
+            combo.append(att);
+            values.push_back(val);
+            combos.push_back(combo);
+            
+            cout << tag << " " <<  att << " " << val << " "  << combo << "\n";
         }
         else {
             
@@ -88,8 +94,8 @@ int main() {
             lines.push_back(s);
     }
     
-    vector<string> attributes;
-    vector<string> combos = buildCombinations(lines, attributes);
+    vector<string> values;
+    vector<string> combos = buildCombinations(lines, values);
     
     vector<string> queries;
     for (int i = 0; i < q; i++) {
