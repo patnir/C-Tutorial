@@ -46,6 +46,20 @@ string getAttribute(string line) {
     return att;
 }
 
+string removeTag(string line) {
+    int loc;
+    for (loc = line.size() - 1; loc >= 0 && line[loc] != '.'; loc--) {
+    }
+    cout << loc;
+    string n;
+    for (int i = 0; i < loc; i++) {
+        n.push_back(line[i]);
+    }
+    
+    cout << n;
+    
+    return n;
+}
 
 vector<string> buildCombinations(vector<string> lines, vector<string> values) {
     vector<string> combos;
@@ -73,7 +87,8 @@ vector<string> buildCombinations(vector<string> lines, vector<string> values) {
             cout << tag << " " <<  att << " " << val << " "  << combo << "\n";
         }
         else {
-            
+            cout << "removing " << curr << "\n";
+            curr = removeTag(curr);
         }
     }
     return combos;
