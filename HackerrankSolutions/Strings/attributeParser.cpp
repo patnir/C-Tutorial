@@ -23,13 +23,26 @@ string getValue(string line) {
 }
 
 
-string removeTag(string line) {
+string getTag(string line) {
     string tag;
+    for (int i = 1; i < line.size() && line[i] != ' '; i++) {
+        tag.push_back(line[i]);
+    }
     return tag;
 }
 
-string removeAttribute(string line) {
+string getAttribute(string line) {
     string att;
+    for (int i = 0; i < line.size() && att.size() == 0; i++) {
+        if (line[i] == ' ') {
+            int j = i + 1;
+            while (line[j] != ' ') {
+               att.push_back(line[j]);
+               j++;
+            }
+            return att;
+        }
+    }
     return att;
 }
 
@@ -46,10 +59,12 @@ vector<string> buildCombinations(vector<string> lines, vector<string> attributes
             else {
                 
             }
+            string tag = getTag(lines[i]);
+            string att = getAttribute(lines[i]);
             string val = getValue(lines[i]);
             attributes.push_back(val);
             combos.push_back(curr);
-            cout << val;
+            cout << tag << " " <<  att << " " << val << "\n";
         }
         else {
             
