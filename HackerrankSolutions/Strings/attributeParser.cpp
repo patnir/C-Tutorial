@@ -50,18 +50,18 @@ string removeTag(string line) {
     int loc;
     for (loc = line.size() - 1; loc >= 0 && line[loc] != '.'; loc--) {
     }
-    cout << loc;
+    //cout << loc;
     string n;
     for (int i = 0; i < loc; i++) {
         n.push_back(line[i]);
     }
     
-    cout << n;
+    //cout << n;
     
     return n;
 }
 
-vector<string> buildCombinations(vector<string> lines, vector<string> values) {
+vector<string> buildCombinations(vector <string> lines, vector <string> &values) {
     vector<string> combos;
     string curr;
     int total = lines.size();
@@ -84,18 +84,35 @@ vector<string> buildCombinations(vector<string> lines, vector<string> values) {
             values.push_back(val);
             combos.push_back(combo);
             
-            cout << tag << " " <<  att << " " << val << " "  << combo << "\n";
+            //cout << tag << " " <<  att << " " << val << " "  << combo << "\n";
         }
         else {
-            cout << "removing " << curr << "\n";
+            //cout << "removing " << curr << "\n";
             curr = removeTag(curr);
         }
     }
     return combos;
 }
 
-void parseQuery() {
-    
+void checkQuery(string s, vector <string> values, vector <string> combos) {
+    for (int i = 0; i < values.size(); i++) {
+        int val = s.compare(combos[i]);
+        //cout << "compare " << val << "\n";
+        if (val == 0) {
+            cout << values[i] << "\n";
+            return;
+        }
+    }
+    cout << NF;
+}
+
+void parseQuery(int q, vector <string> values, vector <string> combos) {
+    for (int i = 0; i < q; i++) {
+        string s;
+        getline(cin, s);
+        //cout << values.size() << "\n";
+        checkQuery(s, values, combos);
+    }
 }
 
 int main() {
@@ -112,11 +129,7 @@ int main() {
     vector<string> values;
     vector<string> combos = buildCombinations(lines, values);
     
-    vector<string> queries;
-    for (int i = 0; i < q; i++) {
-        string s;
-        getline(cin, s);
-        queries.push_back(s);
-    }
+    parseQuery(q, values, combos);
+   
     return 0;
 }
