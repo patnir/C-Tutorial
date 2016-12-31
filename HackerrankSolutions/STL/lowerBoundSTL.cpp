@@ -5,10 +5,13 @@
 #include <algorithm>
 using namespace std;
 
+void binarySearchLocation(int *v, int size, int target) {
+    
+}
 
-void printLocation(vector <int> v, int target) {
+void printLocation(int *v, int size, int target) {
     int i;
-    for (i = 0; i < v.size() && v[i] <= target; i++) {
+    for (i = 0; i < size && v[i] <= target; i++) {
         if (v[i] == target) {
             cout << "Yes " << i + 1 << "\n";
             return;
@@ -21,11 +24,9 @@ int main() {
     /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
     int n;
     cin >> n;
-    vector <int> v;
+    int *v =  new int[n];
     for (int i = 0; i < n; i++) {
-        int a;
-        cin >> a;
-        v.push_back(a);
+        cin >> v[i];
     }
     
     int q;
@@ -33,7 +34,8 @@ int main() {
     for (int i = 0; i < q; i++) {
         int a; 
         cin >> a;
-        printLocation(v, a);
+        printLocation(v, n, a);
     }
+    delete[] v;
     return 0;
 }
