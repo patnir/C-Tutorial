@@ -6,7 +6,30 @@
 using namespace std;
 
 void binarySearchLocation(int *v, int size, int target) {
-    
+    int start = 0;
+    int end = size - 1;
+    int mid = 0;
+    while (start <= end) {
+        mid = (start + end) / 2;
+        if (target == v[mid]) {
+            int curr = mid;
+            while (v[curr] == target && curr >= 0) {
+                curr --;
+            }
+            cout << "Yes " << curr + 2 << "\n";
+            return ;
+        }
+        else if (target >= v[mid]) {
+            start = mid + 1;
+        }
+        else {
+            end = mid - 1;
+        }
+    }
+    while (v[mid] < target && mid < size) {
+        mid ++;
+    }
+    cout << "No " << mid + 1 << "\n"; 
 }
 
 void printLocation(int *v, int size, int target) {
@@ -34,7 +57,7 @@ int main() {
     for (int i = 0; i < q; i++) {
         int a; 
         cin >> a;
-        printLocation(v, n, a);
+        binarySearchLocation(v, n, a);
     }
     delete[] v;
     return 0;
